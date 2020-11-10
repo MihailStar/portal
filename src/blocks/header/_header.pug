@@ -1,0 +1,23 @@
+header.header
+  .container
+    .container__row
+      .header__column.header__column_left
+        img.header__logotype(
+          src='./images/logotype.svg'
+          alt='Logotype BestSexyGames.com'
+          width='45'
+          height='58'
+        )
+        div
+          h1.header__title BestSexyGames.com
+          p.header__description A portal for online games
+      .header__column.header__column_right
+        form.header__form(action='/' method='post')
+          input.header__input(
+            type='text'
+            placeholder='Get 173 Best 2019 Lifehacks in 1 email'
+          )
+          +button('Subscribe')(
+            class='header__submit-button'
+            type='submit'
+          )

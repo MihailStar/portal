@@ -1,0 +1,160 @@
+.header {
+  $padding: 34px;
+  overflow-x: hidden;
+  margin-bottom: 30px;
+  padding-top: $padding;
+  padding-bottom: ($padding - $padding / 2);
+  min-height: 125px;
+  background-color: #4765e7;
+  background-image: url('../images/header-background.png');
+  background-position: 50% 0;
+  background-size: 1920px 125px;
+  background-repeat: no-repeat;
+
+  @media (min-width: 320px) {
+    overflow: visible;
+  }
+
+  @include grid-breakpoint(lg) {
+    margin-bottom: 60px;
+    padding-bottom: $padding;
+  }
+
+  @media (min-resolution: 1.5dppx) {
+    background-image: url('../images/header-background@2x.png');
+  }
+
+  @media (min-width: 1921px) {
+    background-image: none !important;
+  }
+
+  &__column {
+    &_left {
+      display: flex;
+      padding-bottom: ($padding + $padding / 2);
+
+      @include grid-breakpoint(lg) {
+        padding-bottom: 0;
+      }
+
+      @include grid-col(12 null null 5 null);
+    }
+
+    &_right {
+      @include grid-col(12 null null 7 null);
+    }
+  }
+
+  &__logotype {
+    display: none;
+    margin-right: 10px;
+    width: 34px;
+    height: 58px;
+
+    @media (min-width: 320px) {
+      display: block;
+    }
+
+    @media (min-width: 320px) {
+      margin-right: 14px;
+      width: 45px;
+    }
+  }
+
+  &__title {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 32px;
+
+    @media (min-width: 320px) {
+      font-size: 22px;
+    }
+
+    @media (min-width: 448px) {
+      margin-top: 4px;
+      margin-bottom: 4px;
+      font-size: 32px;
+    }
+  }
+
+  &__description {
+    margin-top: 0;
+    margin-bottom: 0;
+    color: #fff;
+    font-size: 13px;
+
+    @media (min-width: 448px) {
+      font-size: 14px;
+    }
+  }
+
+  &__form {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 100%;
+
+    @include grid-breakpoint(sm) {
+      flex-wrap: nowrap;
+    }
+
+    @include grid-breakpoint(md) {
+      justify-content: flex-end;
+    }
+
+    @include grid-breakpoint(xl) {
+      align-items: flex-start;
+      padding-top: 2px;
+    }
+  }
+
+  &__input {
+    $background-color: #fff;
+    flex-grow: 1;
+    margin-right: 0;
+    margin-bottom: 24px;
+    padding: 0 24px;
+    max-width: 466px;
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 24px;
+    background-color: $background-color;
+    color: inherit;
+    font: inherit;
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
+    transition: background-color 200ms;
+
+    @media (min-width: 448px) {
+      height: 46px;
+    }
+
+    @include grid-breakpoint(sm) {
+      margin-right: 24px;
+      margin-bottom: 0;
+    }
+
+    &:focus {
+      outline: none;
+      background-color: darken($background-color, 5%);
+    }
+
+    &::placeholder {
+      color: #92a5af;
+      font-size: 14px;
+    }
+  }
+
+  &__submit-button {
+    font-size: 16px;
+
+    @media (min-width: 448px) {
+      font-size: 18px;
+    }
+  }
+}

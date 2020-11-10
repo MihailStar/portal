@@ -1,0 +1,67 @@
+include ./_data.pug
+
+mixin list(modifier, list)
+  ol.catalog__list(class=`catalog__list_${modifier}`)
+    each item, index in list
+      - var { free, subTitle, price, rating, votes } = item
+      li.catalog__item(class=`catalog__item_${modifier}`)
+        .catalog__image(class=free && 'catalog__image_free')
+          picture
+            source(
+              type='image/webp'
+              srcset=`./images/content/${modifier}-${index + 1}.webp`
+            )
+            source(
+              type='image/jpg'
+              srcset=`./images/content/${modifier}-${index + 1}.jpg`
+            )
+            img(
+              src=`./images/content/${modifier}-${index + 1}.jpg`
+              alt=subTitle
+              width='92'
+              height='97'
+            )
+        div
+          h3.catalog__subtitle!= subTitle
+          if (price)
+            strong.catalog__price(
+              class=`catalog__price_${modifier}`
+            )= `$${price}`
+          .catalog__info(class=`catalog__info_${modifier}`)
+            .catalog__rating
+              each number in [1, 2, 3, 4, 5]
+                if number <= rating
+                  +icon('star')(class='icon-star_yellow' width='14' height='13')
+                else
+                  +icon('star')(width='14' height='13')
+              span.visually-hidden= `${rating} of 5`
+            .catalog__votes= `${votes} votes`
+        a.catalog__link(
+          class=`catalog__link_${modifier}`
+          href='javascript:void(0);'
+        )
+          +icon('arrow')(width='9' height='16')
+          span.visually-hidden View
+
+mixin header(modifier, title)
+  header.catalog__header(class=`catalog__header_${modifier}`)
+    h2.catalog__title= title
+    a.catalog__link-all(href='javascript:void(0);') View all
+
+mixin section({ modifier, title, list })
+  .catalog__column(class=`catalog__column_${modifier}`)
+    section.catalog__section(class=`catalog__section_${modifier}`)
+      +header(modifier, title)
+      +list(modifier, list)
+
+main.catalog
+  .container
+    .container__row
+      +section(data[0])
+      +section(data[1])
+      +section(data[2])
+    .container__row
+      +section(data[3])
+    .container__row
+      +section(data[4])
+      +section(data[5])

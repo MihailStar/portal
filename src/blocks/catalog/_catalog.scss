@@ -1,0 +1,433 @@
+$colors: (dating, #fa3fa2), (survival, #2bc91f), (games, #35b2f1),
+  (products, #ffa800), (money, #16ddc4), (utilities, #f96e0d);
+$linear-gradients: (dating, #c93fa6, #573faf), (survival, #29be1d, #1f9317),
+  (games, #39a3ef, #4765e7), (money, #16ddc4, #1dc4ae),
+  (utilities, #fc9207, #f42523);
+
+.catalog {
+  &__column {
+    &_dating,
+    &_survival {
+      @include grid-col(12 null 6 null 4);
+    }
+
+    &_games {
+      @include grid-col(12 null null null 4);
+    }
+
+    &_products {
+      @include grid-col(12 null null null null);
+    }
+
+    &_money,
+    &_utilities {
+      @include grid-col(12 null 6 null null);
+    }
+  }
+
+  &__section {
+    margin-bottom: 30px;
+    border-bottom: 1px solid transparent;
+    border-radius: 12px;
+    background-color: #fff;
+    box-shadow: 0 0 10px 0 rgba(#000, 0.08);
+
+    @include grid-breakpoint(lg) {
+      margin-bottom: 60px;
+    }
+
+    &_products {
+      background: linear-gradient(to bottom, #3092e4, #4765e7), #4765e7;
+    }
+  }
+
+  &__header {
+    position: relative;
+    z-index: 1;
+    padding: 22px 10px;
+    min-height: 122px;
+    border-radius: 12px 12px 0 0;
+
+    @include grid-breakpoint(sm) {
+      padding: 22px 15px;
+    }
+
+    @include grid-breakpoint(xl) {
+      padding: 22px 20px;
+    }
+
+    &::before {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 57px;
+      background: 0 0 url('../images/triangle.svg') no-repeat;
+      background-size: 101% 100%;
+      content: '';
+    }
+
+    &::after {
+      display: block;
+      clear: both;
+      content: '';
+    }
+
+    &_products {
+      &::before {
+        content: none;
+      }
+    }
+
+    @each $modifier, $color-1, $color-2 in $linear-gradients {
+      &_#{$modifier} {
+        background: 72% -10px url('../images/section-background.svg') no-repeat,
+          linear-gradient(to bottom, #{$color-1}, #{$color-2}), #{$color-2};
+      }
+    }
+  }
+
+  &__title {
+    float: left;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 30px;
+
+    @include grid-breakpoint(sm) {
+      font-size: 19px;
+    }
+
+    @include grid-breakpoint(md) {
+      font-size: 20px;
+    }
+
+    @include grid-breakpoint(lg) {
+      font-size: 21px;
+    }
+
+    @include grid-breakpoint(xl) {
+      font-size: 22px;
+    }
+  }
+
+  &__link-all {
+    $color: #fff;
+    float: right;
+    color: $color;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 28px;
+    transition: color 200ms;
+
+    @include grid-breakpoint(sm) {
+      line-height: 30px;
+    }
+
+    @include grid-breakpoint(md) {
+      line-height: 32px;
+    }
+
+    @include grid-breakpoint(lg) {
+      line-height: 34px;
+    }
+
+    @include grid-breakpoint(xl) {
+      line-height: 36px;
+    }
+
+    &:hover,
+    &:focus {
+      outline: none;
+      color: darken($color, 20%);
+    }
+
+    &:active {
+      color: darken($color, 25%);
+    }
+  }
+
+  &__list {
+    position: relative;
+    z-index: 2;
+    margin-top: -38px;
+    margin-bottom: 0;
+    padding: 0 10px;
+    padding-bottom: 1px;
+
+    @include grid-breakpoint(sm) {
+      padding: 0 15px;
+    }
+
+    @include grid-breakpoint(xl) {
+      padding: 0 20px;
+    }
+
+    &_games {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      @include grid-breakpoint(xl) {
+        display: block;
+      }
+    }
+
+    &_products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      @include grid-breakpoint(xl) {
+        flex-wrap: nowrap;
+      }
+    }
+  }
+
+  &__image {
+    position: relative;
+    top: -15px;
+    float: left;
+    margin-right: 15px;
+    border-radius: 8px;
+    box-shadow: 0 3px 8px 0 rgba(#000, 0.17);
+
+    &_free {
+      &::before {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding-top: 12px;
+        height: 32px;
+        border-radius: 0 0 8px 8px;
+        background: 0 0 url('../images/play-free.svg') no-repeat;
+        color: #fff;
+        content: 'Play Free';
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 20px;
+      }
+    }
+
+    img {
+      display: block;
+      border-radius: 8px;
+    }
+  }
+
+  &__item {
+    position: relative;
+    display: block;
+    margin-bottom: 28px;
+    padding: 0 10px;
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 0 10px 0 rgba(#000, 0.08);
+
+    @include grid-breakpoint(sm) {
+      padding: 0 15px;
+    }
+
+    &::after {
+      display: block;
+      clear: both;
+      content: '';
+    }
+
+    &:first-child {
+      .catalog__image {
+        box-shadow: 0 3px 8px 0 rgba(#000, 0.17), 0 0 0 2px #ffc000;
+
+        &::after {
+          position: absolute;
+          top: 70px;
+          left: -10px;
+          width: 32px;
+          height: 38px;
+          background-image: url('../images/first.png');
+          background-position: 0 0;
+          background-size: 32px 38px;
+          background-repeat: no-repeat;
+          content: '';
+
+          @media (min-resolution: 1.5dppx) {
+            background-image: url('../images/first@2x.png');
+          }
+        }
+      }
+    }
+
+    &:last-child {
+      margin-bottom: 25px;
+    }
+
+    &_games {
+      width: 100%;
+
+      @include grid-breakpoint(md) {
+        width: calc(50% - 15px);
+      }
+
+      @include grid-breakpoint(lg) {
+        width: calc(50% - 15px);
+      }
+
+      @include grid-breakpoint(xl) {
+        width: auto;
+      }
+    }
+
+    &_products {
+      width: 100%;
+
+      @include grid-breakpoint(md) {
+        width: calc(50% - 15px);
+      }
+
+      @include grid-breakpoint(xl) {
+        width: calc(25% - 20px);
+      }
+
+      &:first-child {
+        .catalog__image {
+          box-shadow: 0 3px 8px 0 rgba(#000, 0.17);
+
+          &::after {
+            content: none;
+          }
+        }
+      }
+    }
+  }
+
+  &__subtitle {
+    margin-top: 14px;
+    margin-bottom: 6px;
+    color: #22272b;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 20px;
+
+    @include grid-breakpoint(lg) {
+      font-size: 16px;
+    }
+  }
+
+  &__price {
+    display: block;
+    margin-top: -6px;
+    margin-bottom: 6px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+
+    @each $modifier, $color in $colors {
+      &_#{$modifier} {
+        color: $color;
+      }
+    }
+  }
+
+  &__info {
+    display: flex;
+    clear: left;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+
+    @include grid-breakpoint(sm) {
+      clear: none;
+    }
+
+    @include grid-breakpoint(md) {
+      clear: left;
+    }
+
+    @include grid-breakpoint(lg) {
+      clear: none;
+    }
+
+    &_products {
+      margin-bottom: 5px;
+    }
+  }
+
+  &__rating {
+    margin-right: 10px;
+
+    .icon-star {
+      fill: #92a5af;
+
+      &:not(:last-child) {
+        margin-right: 4px;
+      }
+
+      &_yellow {
+        fill: #ffc000;
+      }
+    }
+  }
+
+  &__votes {
+    color: #92a5af;
+    font-size: 12px;
+    font-family: 'Open Sans', sans-serif;
+    line-height: 20px;
+  }
+
+  &__link {
+    position: absolute;
+    right: 0;
+    bottom: -1px;
+    overflow: hidden;
+    width: 36px;
+    height: 36px;
+    border-radius: 0 0 8px 0;
+
+    &::before {
+      position: absolute;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      content: '';
+      transition: background-color 200ms;
+    }
+
+    @each $modifier, $background-color in $colors {
+      &_#{$modifier} {
+        &::before {
+          background-color: $background-color;
+        }
+
+        &:hover,
+        &:focus {
+          outline: none;
+
+          &::before {
+            background-color: darken($background-color, 10%);
+          }
+        }
+
+        &:active {
+          &::before {
+            background-color: darken($background-color, 15%);
+          }
+        }
+      }
+    }
+
+    .icon-arrow {
+      position: absolute;
+      right: 10px;
+      bottom: 8px;
+      fill: #fff;
+    }
+  }
+}

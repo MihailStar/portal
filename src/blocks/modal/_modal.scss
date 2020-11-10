@@ -1,0 +1,133 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  overflow-y: auto;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  padding-top: 82px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(#4662de, 0.95);
+
+  &_visible {
+    clip: auto;
+    clip-path: none;
+  }
+
+  &__column {
+    position: relative;
+    @include grid-col(12 null null null null);
+  }
+
+  &__title {
+    margin-top: 0;
+    margin-bottom: 72px;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 44px;
+    line-height: 58px;
+  }
+
+  &__image {
+    display: block;
+    margin: 0 auto 96px;
+    max-width: 100%;
+    height: auto;
+  }
+
+  &__form {
+    margin-bottom: 30px;
+  }
+
+  &__input {
+    $background-color: #fff;
+    display: block;
+    margin: 0 auto 30px;
+    padding: 0 24px;
+    max-width: 562px;
+    width: 100%;
+    height: 54px;
+    border: none;
+    border-radius: 28px;
+    background-color: $background-color;
+    color: inherit;
+    font: inherit;
+    font-family: 'Open Sans', sans-serif;
+    transition: background-color 200ms;
+
+    &:focus {
+      outline: none;
+      background-color: darken($background-color, 5%);
+    }
+
+    &::placeholder {
+      color: #92a5af;
+    }
+  }
+
+  &__submit-button {
+    $background-color: #fa3fa2;
+    display: block;
+    margin: 0 auto;
+    background-color: $background-color;
+
+    &:focus,
+    &:hover {
+      outline: none;
+      background-color: darken($background-color, 10%);
+    }
+
+    &:active {
+      background-color: darken($background-color, 15%);
+    }
+  }
+
+  &__small {
+    display: block;
+    margin-bottom: 82px;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  &__close-button {
+    $fill: #fff;
+    position: absolute;
+    top: -52px;
+    right: map-get($grid, container);
+    display: flex;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background-color: transparent;
+    cursor: pointer;
+
+    .icon-close {
+      margin: auto;
+      transition: fill 200ms;
+      fill: $fill;
+    }
+
+    &:hover,
+    &:focus {
+      outline: none;
+
+      .icon-close {
+        fill: darken($fill, 20%);
+      }
+    }
+
+    &:active {
+      .icon-close {
+        fill: darken($fill, 25%);
+      }
+    }
+  }
+}

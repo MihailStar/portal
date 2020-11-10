@@ -1,0 +1,33 @@
+.modal.js-modal(
+    tabindex='-1'
+    role='dialog'
+    aria-labelledby='modal-title'
+    aria-hidden='true'
+  )
+  .container
+    .container__row
+      .modal__column(role='document')
+        h3.modal__title#modal-title.
+          Ready to Subscribe <br> and get the best personal picks ever?
+        picture
+          source(type='image/webp' srcset='./images/content/book.webp')
+          source(type='image/png' srcset='./images/content/book.png')
+          img.modal__image(
+            src='./images/content/book.png'
+            alt='E-book 173 Best Lifehacks for 2019'
+            width='292'
+            height='430'
+          )
+        form.modal__form(action='/' method='post')
+          input.modal__input(
+            type='text'
+            placeholder='Let us know your email to send you your personal top'
+          )
+          +button('Subscribe')(
+            class='modal__submit-button'
+            type='submit'
+          )
+        small.modal__small it’s cool, you can unsubscribe with 1 click
+        button.modal__close-button.js-modal-close(type='button')
+          +icon('close')(width='40' height='40')
+          span.visually-hidden Close

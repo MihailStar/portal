@@ -1,0 +1,21 @@
+extends ./templates/_base.pug
+include ./blocks/button/_button.pug
+include ./blocks/icon/_icon.pug
+
+block variables
+  - var pageTitle = 'BestSexyGames.com | A portal for online games'
+
+block head
+  link(
+    href='https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800'
+    rel='stylesheet'
+  )
+  link(
+    href='https://fonts.googleapis.com/css?family=Open+Sans'
+    rel='stylesheet'
+  )
+block body
+  include ./blocks/header/_header.pug
+  include ./blocks/catalog/_catalog.pug
+  include ./blocks/modal/_modal.pug
+  include ./blocks/sprite/_sprite.pug
